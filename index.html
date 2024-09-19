@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css"> <!-- External CSS file -->
+    <style>
+        /* You can place your CSS styles here or link to an external stylesheet */
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login_container">
+        <div class="login_title">
+            <span>Login</span>
+        </div>
+
+        <form id="loginForm">
+            <!-- Username Field -->
+            <div class="input_wrapper">
+                <input type="text" id="user" class="input_field" required>
+                <label for="user" class="label">Username</label>
+                <i class="fa-regular fa-user icon"></i>
+                <small class="error" id="userError"></small>
+            </div>
+
+            <!-- Password Field -->
+            <div class="input_wrapper">
+                <input type="password" id="password" class="input_field" required>
+                <label for="pass" class="label">Password</label>
+                <i class="fa-regular fa-lock icon"></i>
+                <small class="error" id="passwordError"></small>
+            </div>
+
+
+            <!-- Remember Me and Forgot Password -->
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+                <div class="forgot">
+                    <a href="#">Forgot Password ?</a>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="input_wrapper">
+                <input type="submit" class="input_submit" value="Login">
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="signup">
+                <span>Don't have an Account? <a href="#">Sign Up</a></span>
+            </div>
+        </form>
+    </div>
+  </div>    
+
+  <!-- JavaScript inside the same file -->
+  <script>
+    // Form validation logic
+    const form = document.getElementById('loginForm');
+    const userInput = document.getElementById('user');
+    const passwordInput = document.getElementById('password');
+    const userError = document.getElementById('userError');
+    const passwordError = document.getElementById('passwordError');
+
+    // Add event listener for form submission
+    form.addEventListener('submit', function (event) {
+        let isValid = true;
+
+        // Clear any previous error messages
+        userError.textContent = '';
+        passwordError.textContent = '';
+
+        // Validate Username
+        if (userInput.value.trim() === '') {
+            userError.textContent = 'Username is required';
+            isValid = false;
+        }
+
+        // Validate Password
+        if (passwordInput.value.trim() === '') {
+            passwordError.textContent = 'Password is required';
+            isValid = false;
+        } else if (passwordInput.value.trim().length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters long';
+            isValid = false;
+        }
+
+        // Prevent form submission if not valid
+        if (!isValid) {
+            event.preventDefault(); // Stop form submission
+        } else {
+            alert('Login Successful!'); // Success message (can be replaced with form submission logic)
+        }
+    });
+
+    // Optional: Remember Me Functionality
+    const rememberMeCheckbox = document.getElementById('remember');
+
+    rememberMeCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            \console.log('Remember Me checked!');
+            // You can add logic here to store the user session or details.
+        } else {
+
+            console.log('Remember Me unchecked!');
+        }
+    });
+  </script>
+</body>
+</html>
